@@ -1,13 +1,11 @@
 const button = document.getElementById('guess-button');
-const restartButton = document.getElementById('restart-button');
 const input = document.getElementById('guess-input');
 const alerta = document.getElementById('alerta');
 const valor = input.value;
 let intentos = 6;
-const UrlAPI = 'https://random-word-api.herokuapp.com/word?lang=es&length=5'; //API para obtener palabras aleatorias
 
-/*let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH']
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];*/
+let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH']
+const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 
 
 window.addEventListener('load', init)
@@ -15,18 +13,8 @@ function init() {
     console.log('Esto se ejecuta solo cuando se carga la pagina')
 }
 
-fetch(UrlAPI).then(response => response.json())//Obtener palabras aleatorias de la API
-    .then(response => {
-        palabra = response[0].toUpperCase();
-        console.log("API: ",palabra);
-    })
-    .catch(err => {
-        console.log('hubo un problema con la API >:c');
-        let diccionario = ["PERRO", "CASA", "LIBRO", "COCHE", "PLAYA", "MESA", "HUEVO", "LAPIZ", "ARBOL", "TIGRE"];
-        palabra = diccionario[Math.floor(Math.random() * diccionario.length)].toUpperCase();
-        console.log(palabra);
-    }) 
 
+button.addEventListener('click', intentar);
 
 function leerIntento() {
     let intento = document.getElementById('guess-input');
@@ -34,8 +22,6 @@ function leerIntento() {
     intento = intento.toUpperCase();
     return intento;
 }
-
-button.addEventListener('click', intentar);
 
 function intentar() {
     const INTENTO = leerIntento();
@@ -86,32 +72,6 @@ function intentar() {
         return
     }
 }
-
-restartButton.addEventListener('click', reiniciarJuego);
-
-function reiniciarJuego() {
-    intentos = 6;
-    fetch(UrlAPI)
-        .then(response => response.json())
-        .then(response => {
-            palabra = response[0].toUpperCase();
-            console.log("API: ", palabra);
-        })
-        .catch(err => {
-            console.log('Hubo un problema con la API >:c');
-            let diccionario = ["PERRO", "CASA", "LIBRO", "COCHE", "PLAYA", "MESA", "HUEVO", "LAPIZ", "ARBOL", "TIGRE"];
-            palabra = diccionario[Math.floor(Math.random() * diccionario.length)].toUpperCase();
-            console.log(palabra);
-        });
-
-    input.value = '';
-    alerta.style.display = 'none';
-    document.getElementById('grid').innerHTML = '';
-    document.getElementById('guesses').innerHTML = '';
-    input.disabled = false;
-    button.disabled = false;
-}
-
 
 function terminar(mensaje) {
     const INPUT = document.getElementById('guess-input');
