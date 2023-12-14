@@ -15,9 +15,13 @@ body {
     width: 250px;
     border: 1px solid #ccc;
   }
+
+  .botones {
+    transform: translate(39%, 10%);   /*Centra horizontalmente y verticalmente */
+  }
      
-  #guess-button {
-    display: block;
+  #guess-button, #restart-button {
+    /*display: block;*/
     margin: 0 auto;
     padding: 10px 20px;
     font-size: 18px;
@@ -52,7 +56,7 @@ body {
 #alerta {
     display: none;
     position: fixed;
-    top: 40%;  /* Centra verticalmente en la mitad de la pantalla */
+    top: 45%;  /* Centra verticalmente en la mitad de la pantalla */
     left: 50%;  /* Centra horizontalmente en la mitad de la pantalla */
     transform: translate(-50%, -50%);  /* Centra horizontalmente y verticalmente */
     width: 300px; 
