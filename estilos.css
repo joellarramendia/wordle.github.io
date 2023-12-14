@@ -17,7 +17,7 @@ body {
   }
 
   .botones {
-    transform: translate(39%, 10%);   /*Centra horizontalmente y verticalmente */
+    transform: translate(42%, 10%);   /*Centra horizontalmente y verticalmente */
   }
      
   #guess-button, #restart-button {
